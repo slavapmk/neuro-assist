@@ -1,0 +1,6 @@
+[submodule "bot"]
+	path = bot
+	url = https://github.com/neuro-assist/bot
+[submodule "backend"]
+	path = backend
+	url = https://github.com/neuro-assist/backend
