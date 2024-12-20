@@ -4,3 +4,6 @@
 [submodule "backend"]
 	path = backend
 	url = https://github.com/neuro-assist/backend
+[submodule "gemini-poller"]
+	path = gemini-poller
+	url = https://github.com/neuro-assist/gemini-poller
