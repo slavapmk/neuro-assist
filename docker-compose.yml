@@ -1,6 +1,6 @@
 services:
   database:
-    image: postgres:16
+    image: postgres:14
     environment:
       POSTGRES_DB: "neuro"
       POSTGRES_USER: "backend"
@@ -11,6 +11,7 @@ services:
     healthcheck:
       test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
       interval: 1s
+      start_period: 5s
       timeout: 5s
       retries: 30
     expose:
