@@ -1,0 +1,49 @@
+services:
+  database:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: "neuro"
+      POSTGRES_USER: "backend"
+      POSTGRES_PASSWORD: "rndfkjsr"
+    ports:
+      - "5432:5432"
+    container_name: "database"
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB" ]
+      interval: 1s
+      timeout: 5s
+      retries: 30
+    expose:
+      - "5432"
+    volumes:
+      - "./docker/database:/var/lib/postgresql/data/"
+  backend:
+    build: backend
+    environment:
+      POSTGRES_URL: "jdbc:postgresql://database:5432/neuro"
+      POSTGRES_USER: "backend"
+      POSTGRES_PASSWORD: "rndfkjsr"
+    ports:
+      - "8080:8080"
+    container_name: "backend"
+    expose:
+      - "8080"
+    depends_on:
+      database:
+        condition: service_healthy
+    healthcheck:
+      test: curl --fail http://localhost:8080 || exit 1
+      interval: 1s
+      retries: 5
+      start_period: 1s
+      timeout: 10s
+  gemini_poller:
+    build: gemini-poller
+    environment:
+      API_BASE_URL: "http://backend:8080"
+      POLLER_ID: "6973c71f-ce3e-4d6b-8b92-f79aa7c58035"
+      GEMINI_TOKEN: "AIzaSyD6ZXMCo_DgyRuecc3uSB6oO8d4V2rYwdw"
+    container_name: "gemini_poller"
+    depends_on:
+      backend:
+        condition: service_healthy
