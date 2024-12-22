@@ -1,9 +1,9 @@
-[submodule "bot"]
-	path = bot
-	url = https://github.com/neuro-assist/bot
 [submodule "backend"]
 	path = backend
 	url = https://github.com/neuro-assist/backend
 [submodule "gemini-poller"]
 	path = gemini-poller
 	url = https://github.com/neuro-assist/gemini-poller
+[submodule "bot"]
+	path = bot
+	url = https://github.com/neuro-assist/bot
