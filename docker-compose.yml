@@ -45,7 +45,7 @@ services:
     environment:
       API_BASE_URL: "http://backend:8080"
       POLLER_ID: "6973c71f-ce3e-4d6b-8b92-f79aa7c58035"
-      GEMINI_TOKEN: ""
+      GEMINI_TOKEN: "AIzaSyC4Q2AZfCZVnb_Nc8nqYKTCHqC8wF6ISfg"
     container_name: "gemini_poller"
     depends_on:
       backend:
@@ -54,7 +54,7 @@ services:
     build: bot
     environment:
       API_BASE_URL: "http://backend:8080"
-      TOKEN: ""
+      TOKEN: "6785795013:AAGUmpVXMcqMttxAoMUTUfNmWmJihgQQlDU"
     container_name: "bot"
     depends_on:
       backend:
