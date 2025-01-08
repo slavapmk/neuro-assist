@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   database:
     image: postgres:14
@@ -55,6 +53,7 @@ services:
     environment:
       API_BASE_URL: "http://backend:8080"
       TOKEN: "6785795013:AAGUmpVXMcqMttxAoMUTUfNmWmJihgQQlDU"
+      PYTHONUNBUFFERED: 1
     container_name: "bot"
     depends_on:
       backend:
